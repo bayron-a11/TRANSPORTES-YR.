@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Camiones - TRANSPORTES YR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background-color: #eef2f5; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header, footer { background-color: #003366; color: white; text-align: center; padding: 20px; }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    section video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    section h2, .flota, .camion, .camion p, .camion img, div[style*="text-align"] {
+      position: relative;
+      z-index: 1;
+    }
+    .flota { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .camion { background: #f4f8fb; border-radius: 10px; padding: 15px; width: 280px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    .camion img { width: 100%; border-radius: 10px; }
+  </style>
+</head>
+<body>
+<header><h1>TRANSPORTES YR</h1><p>Nuestra Flota</p></header>
+<section>
+  <video autoplay muted loop playsinline>
+    <source src="imagenes/video2.mp4" type="video/mp4">
+  </video>
+  <h2>Camiones para transporte de líquidos</h2>
+  <div class="flota">
+    <div class="camion"><img src="imagenes/camion1.png" alt="Camión 1"><p><strong>Capacidad:</strong> 15,000 L<br><strong>Tipo:</strong> Combustible<br><strong>Año:</strong> 2022<br><strong>Km recorridos:</strong> 80,000<br><strong>Consumo:</strong> 4.5 km/L</p></div>
+    <div class="camion"><img src="imagenes/camion2.png" alt="Camión 2"><p><strong>Capacidad:</strong> 12,000 L<br><strong>Tipo:</strong> Agua<br><strong>Año:</strong> 2021<br><strong>Km recorridos:</strong> 60,000<br><strong>Consumo:</strong> 5.0 km/L</p></div>
+    <div class="camion"><img src="imagenes/camion3.png" alt="Camión 3"><p><strong>Capacidad:</strong> 10,000 L<br><strong>Tipo:</strong> Químico<br><strong>Año:</strong> 2020<br><strong>Km recorridos:</strong> 90,000<br><strong>Consumo:</strong> 4.0 km/L</p></div>
+  </div>
+<div style="text-align: center; margin-top: 30px;">
+  <a href="unificado.html" style="display: inline-block; background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">← Regresar</a>
+</div>
+</section>
+<footer>&copy; 2025 TRANSPORTES YR. Todos los derechos reservados.</footer>
+</body>
+</html>

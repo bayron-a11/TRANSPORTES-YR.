@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>TRANSPORTES YR - Misión y Visión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
+      position: relative;
+    }
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+    }
+    .contenido {
+      padding: 60px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      max-width: 800px;
+      margin: 100px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #eee;
+    }
+    .saltar, .whatsapp {
+      position: fixed;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      z-index: 2;
+    }
+    .saltar {
+      top: 30px; right: 30px;
+      background: #0055aa; color: white;
+      box-shadow: 0 0 10px rgba(0,153,255,0.7);
+      transition: 0.3s;
+    }
+    .saltar:hover {
+      background: #0077dd;
+      box-shadow: 0 0 20px rgba(0,153,255,1);
+      transform: scale(1.05);
+    }
+    .whatsapp {
+      bottom: 30px; right: 30px;
+      background: #25D366; color: white;
+      box-shadow: 0 0 10px rgba(37,211,102,0.7);
+      transition: 0.3s;
+    }
+    .whatsapp:hover {
+      background: #1ebd5a;
+      box-shadow: 0 0 20px rgba(37,211,102,1);
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <video id="bg-video" autoplay muted loop>
+    <source src="Imagenes/musicaintro.mp4" type="video/mp4">
+  </video>
+
+  <audio id="introAudio" autoplay loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <a class="saltar" href="registro.html">Saltar</a>
+  <a class="whatsapp" href="https://wa.me/573202199510" target="_blank">WhatsApp</a>
+
+  <div class="contenido">
+    <h1>Misión</h1>
+    <p>Brindar soluciones de transporte de líquidos con altos estándares de seguridad, puntualidad y tecnología, asegurando la satisfacción de nuestros clientes en todo el territorio colombiano.</p>
+
+    <h1>Visión</h1>
+    <p>Ser la empresa líder en transporte especializado de líquidos en Colombia, reconocida por su innovación, confiabilidad y compromiso con el medio ambiente y el desarrollo sostenible.</p>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const audio = document.getElementById('introAudio');
+      if (audio) {
+        audio.play().catch(() => {
+          document.addEventListener('click', () => audio.play(), { once: true });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

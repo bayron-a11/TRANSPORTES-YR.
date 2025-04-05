@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - TRANSPORTES YR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      overflow: hidden;
+    }
+    .fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .formulario {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 380px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 35px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #003366;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    input:focus, select:focus {
+      border-color: #0055aa;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 85, 170, 0.5);
+    }
+    button {
+      background-color: #003366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0055aa;
+    }
+    .mensaje {
+      color: red;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="fondoImagen" class="fondo" src="imagenes/foto1.png" alt="Fondo">
+  <video id="videoFondo" class="fondo" style="display: none;" muted>
+    <source src="imagenes/video1.mp4" type="video/mp4">
+  </video>
+  <audio id="claxon">
+    <source src="imagenes/claxon.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="formulario">
+    <h2>Registro de Usuario</h2>
+    <input type="text" id="nombre" placeholder="Nombre completo">
+    <select id="tipoId">
+      <option value="CC">Cédula de ciudadanía</option>
+      <option value="TI">Tarjeta de identidad</option>
+      <option value="CE">Cédula de extranjería</option>
+    </select>
+    <input type="text" id="numeroId" placeholder="Número de identificación">
+    <input type="date" id="fechaNacimiento">
+    <input type="text" id="usuario" placeholder="Nombre de usuario">
+    <input type="password" id="clave" placeholder="Contraseña">
+    <button onclick="registrarUsuario()">Registrar</button>
+    <button onclick="validarCedula()">Validar cédula</button>
+    <div class="mensaje" id="mensajeCedula"></div>
+    <button onclick="borrarUsuarios()" style="background-color: crimson;">Vaciar memoria</button>
+  </div>
+
+  <script>
+    const fondo = document.getElementById('fondoImagen');
+    const video = document.getElementById('videoFondo');
+    const claxon = document.getElementById('claxon');
+
+    const imagenes = [
+      'imagenes/foto1.png',
+      'imagenes/foto2.png',
+      'imagenes/foto3.png'
+    ];
+
+    let i = 0;
+
+    function mostrarFondo() {
+      if (i < imagenes.length) {
+        fondo.src = imagenes[i];
+        i++;
+        setTimeout(mostrarFondo, 3000);
+      } else {
+        fondo.style.display = 'none';
+        video.style.display = 'block';
+        video.play();
+        claxon.play();
+        video.onended = () => {
+          video.style.display = 'none';
+          fondo.style.display = 'block';
+          i = 0;
+          mostrarFondo();
+        };
+      }
+    }
+
+    window.onload = mostrarFondo;
+
+    function registrarUsuario() {
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const nuevoUsuario = {
+        nombre: document.getElementById("nombre").value,
+        tipoId: document.getElementById("tipoId").value,
+        numeroId: document.getElementById("numeroId").value,
+        fechaNacimiento: document.getElementById("fechaNacimiento").value,
+        usuario: document.getElementById("usuario").value,
+        clave: document.getElementById("clave").value
+      };
+      const existe = usuarios.some(u => u.usuario === nuevoUsuario.usuario);
+      if (existe) {
+        alert('El nombre de usuario ya está registrado.');
+        return;
+      }
+      usuarios.push(nuevoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(usuarios));
+      alert("Registro exitoso. Ahora valida tu cédula.");
+    }
+
+    function validarCedula() {
+      const cedula = document.getElementById("numeroId").value.trim();
+      const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      const existe = usuarios.some(u => u.numeroId === cedula);
+      if (existe) {
+        alert("Cédula validada. Bienvenido.");
+        window.location.href = "unificado.html";
+      } else {
+        document.getElementById("mensajeCedula").innerText = "Cédula no registrada.";
+      }
+    }
+
+    function borrarUsuarios() {
+      localStorage.removeItem('usuarios');
+      alert("Usuarios eliminados.");
+    }
+  </script>
+
+</body>
+</html>
